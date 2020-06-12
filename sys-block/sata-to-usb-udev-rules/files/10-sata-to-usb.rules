@@ -1,0 +1,14 @@
+# ASMedia Technology Inc.
+#
+# ASM1051E SATA 6Gb/s bridge, ASM1053E SATA 6Gb/s bridge, ASM1153 SATA 3Gb/s bridge, ASM1153E SATA 6Gb/s bridge
+ACTION=="add|change", ATTRS{idVendor}=="174c", ATTRS{idProduct}=="5106", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+ACTION=="add|change", ATTRS{idVendor}=="174c", ATTRS{idProduct}=="55aa", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+# ASM1153 SATA 3Gb/s bridge
+ACTION=="add|change", ATTRS{idVendor}=="174c", ATTRS{idProduct}=="1153", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+
+# JMicron Technology Corp. / JMicron USA Technology Corp.
+#
+# JMS567 SATA 6Gb/s bridge
+ACTION=="add|change", ATTRS{idVendor}=="152d", ATTRS{idProduct}=="0578", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+# JMS583
+ACTION=="add|change", ATTRS{idVendor}=="152d", ATTRS{idProduct}=="0562", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
