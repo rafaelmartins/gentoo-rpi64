@@ -5,7 +5,7 @@ EAPI=7
 
 PYTHON_COMPAT=( python{2_7,3_{7,8}} )
 
-inherit python-any-r1 unpacker
+inherit python-any-r1
 
 DESCRIPTION="Raspberry Pi 4 boot EEPROM updater"
 HOMEPAGE="https://github.com/raspberrypi/rpi-eeprom/"
