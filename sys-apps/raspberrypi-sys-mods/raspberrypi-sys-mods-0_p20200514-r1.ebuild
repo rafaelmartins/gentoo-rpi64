@@ -3,6 +3,8 @@
 
 EAPI=7
 
+inherit udev
+
 DESCRIPTION="System tweaks for the Raspberry Pi"
 HOMEPAGE="https://github.com/RPi-Distro/raspberrypi-sys-mods"
 LICENSE="BSD"
@@ -13,6 +15,7 @@ RDEPEND="
 	acct-group/spi
 	sys-devel/gettext
 	sys-libs/libcap
+	virtual/udev
 "
 
 SRC_URI="http://archive.raspberrypi.org/debian/pool/main/${PN:0:1}/${PN}/${PN}_${PV/0_p/}.tar.xz"
@@ -38,4 +41,8 @@ src_install() {
 
 	exeinto /usr/lib/raspberrypi-sys-mods
 	doexe usr/lib/raspberrypi-sys-mods/*
+}
+
+pkg_postinst() {
+	udev_reload
 }
