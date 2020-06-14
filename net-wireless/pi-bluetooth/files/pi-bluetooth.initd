@@ -1,0 +1,36 @@
+#!/sbin/openrc-run
+# Copyright 2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+name="pi-bluetooth daemon"
+description="Initializes Raspberry Pi Bluetooth"
+command=/usr/bin/btattach
+command_args="-B /dev/serial1 -P bcm -S 3000000"
+command_background=true
+pidfile="/run/pi-bluetooth.pid"
+
+depend() {
+    need bluetooth
+    after coldplug hotplug modules
+}
+
+start_pre() {
+    ewaitfile "${pi_bluetooth_timeout:-60}" /dev/serial1
+}
+
+start_post() {
+    local i=0 timeout="${pi_bluetooth_timeout:-60}"
+
+    ebegin "Waiting for BlueTooth controller"
+    while ! /usr/bin/bluetoothctl show &> /dev/null; do
+        /usr/bin/sleep 1
+        i=$((i + 1))
+        if test $i -gt $timeout; then
+            eend 1 "Timeout"
+            return
+        fi
+    done
+    eend 0
+
+    /usr/bin/bthelper hci0
+}
