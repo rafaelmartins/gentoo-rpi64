@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit unpacker
+inherit udev unpacker
 
 DESCRIPTION="Miscellaneous Raspberry Pi utilities and libraries"
 HOMEPAGE="https://github.com/raspberrypi/userland/"
@@ -40,4 +40,8 @@ src_install() {
 	insopts -m 0755
 	mv usr/lib/aarch64-linux-gnu usr/lib64 || die
 	doins -r usr/bin usr/lib64
+}
+
+pkg_postinst() {
+	udev_reload
 }
