@@ -3,6 +3,8 @@
 
 EAPI=7
 
+inherit udev
+
 DESCRIPTION="udev rules to fixup some USB Sata adapters"
 HOMEPAGE="https://github.com/rafaelmartins/gentoo-rpi64"
 SRC_URI=""
@@ -17,6 +19,9 @@ RDEPEND="virtual/udev"
 S="${WORKDIR}"
 
 src_install() {
-	insinto /lib/udev/rules.d
-	doins "${FILESDIR}/10-sata-to-usb.rules"
+	udev_dorules "${FILESDIR}/10-sata-to-usb.rules"
+}
+
+pkg_postinst() {
+	udev_reload
 }
