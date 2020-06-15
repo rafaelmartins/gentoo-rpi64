@@ -30,6 +30,18 @@ src_prepare() {
 	mv etc.armhf/udev/rules.d/99-com.rules lib/udev/rules.d/ || die
 	rm -rf etc.armhf/udev
 	rm lib/udev/rules.d/80-noobs.rules
+
+	sed -i \
+		-e '1,/ttyAMA/!d' \
+		-e '/ttyAMA/d' \
+		lib/udev/rules.d/99-com.rules
+
+	echo \
+		'KERNEL=="ttyAMA[0-9]", PROGRAM="/usr/lib/raspberrypi-sys-mods/serial-helper %k", SYMLINK+="serial%c"' \
+		>> lib/udev/rules.d/99-com.rules
+	echo \
+		'KERNEL=="ttyS[0-9]", PROGRAM="/usr/lib/raspberrypi-sys-mods/serial-helper %k", SYMLINK+="serial%c"' \
+		>> lib/udev/rules.d/99-com.rules
 }
 
 src_install() {
@@ -40,7 +52,9 @@ src_install() {
 	doins -r etc.armhf/*
 
 	exeinto /usr/lib/raspberrypi-sys-mods
-	doexe usr/lib/raspberrypi-sys-mods/*
+	doexe \
+		usr/lib/raspberrypi-sys-mods/* \
+		"${FILESDIR}/serial-helper"
 }
 
 pkg_postinst() {

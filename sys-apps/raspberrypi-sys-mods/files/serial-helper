@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+cat_soc_id() {
+    local f="/proc/device-tree${1}"
+    if [ ! -f "${f}" ]; then
+        return 1
+    fi
+    /bin/tr -d '\0' < "${f}"
+}
+
+get_tty_soc_id() {
+    local sl="/sys/class/tty/${1}/device/of_node"
+    if [ ! -L "${sl}" ]; then
+        return 1
+    fi
+    /usr/bin/readlink "${sl}"
+}
+
+case "$(get_tty_soc_id "${1}")" in
+
+    *"$(cat_soc_id /aliases/serial0)")
+        echo 0
+        ;;
+
+    *"$(cat_soc_id /aliases/serial1)")
+        echo 1
+        ;;
+
+    *)
+        exit 1
+esac
