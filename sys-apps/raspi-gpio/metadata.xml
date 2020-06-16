@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafael@rafaelmartins.eng.br</email>
+		<name>Rafael Martins</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">RPi-Distro/raspi-gpio</remote-id>
+	</upstream>
+</pkgmetadata>
