@@ -5,26 +5,20 @@ EAPI=7
 
 PYTHON_COMPAT=( python{2_7,3_{7,8}} )
 
-inherit python-any-r1 vcs-snapshot
+inherit python-any-r1
 
 DESCRIPTION="Raspberry Pi 4 boot EEPROM updater"
 HOMEPAGE="https://github.com/raspberrypi/rpi-eeprom/"
 LICENSE="BSD raspberrypi-only"
 SLOT="0"
 
-GIT_SHA=4731bda
-MY_P="${PN}-${GIT_SHA}"
-
-SRC_URI="https://github.com/raspberrypi/${PN}/archive/${GIT_SHA}.tar.gz -> ${MY_P}.tar.gz"
+SRC_URI="http://archive.raspberrypi.org/debian/pool/main/${PN:0:1}/${PN}/${PN}_${PV}.orig.tar.gz"
 KEYWORDS="~arm64"
 IUSE=""
-
 RDEPEND="${PYTHON_DEPS}
 	sys-apps/pciutils
 	sys-boot/raspberrypi-bootloader
 	media-libs/raspberrypi-userland-bin"
-
-S="${WORKDIR}/${MY_P}"
 
 src_install() {
 	dobin \
@@ -39,7 +33,7 @@ src_install() {
 		firmware/release-notes.md
 
 	mkdir -p "${ED}/etc/default" || die
-	echo 'FIRMWARE_RELEASE_STATUS="beta"' > "${ED}/etc/default/rpi-eeprom-update" || die
+	echo 'FIRMWARE_RELEASE_STATUS="stable"' > "${ED}/etc/default/rpi-eeprom-update" || die
 
 	keepdir /var/lib/raspberrypi/bootloader/backup
 
