@@ -11,7 +11,7 @@ LICENSE="raspberrypi-only"
 SLOT="0"
 RESTRICT="strip"
 
-GIT_SHA=9d4f640
+GIT_SHA=2b76cfc
 MY_P="raspberrypi-firmware-${GIT_SHA}"
 
 SRC_URI="https://github.com/raspberrypi/firmware/archive/${GIT_SHA}.tar.gz -> ${MY_P}.tar.gz"
