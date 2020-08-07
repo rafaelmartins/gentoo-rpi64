@@ -10,7 +10,7 @@ HOMEPAGE="http://www.bluez.org"
 LICENSE="bluez-firmware"
 SLOT="0"
 
-GIT_SHA=98cbd44
+GIT_SHA=afe608e
 MY_P="${PN}-${GIT_SHA}"
 
 SRC_URI="https://github.com/RPi-Distro/bluez-firmware/archive/${GIT_SHA}.tar.gz -> ${MY_P}.tar.gz"
