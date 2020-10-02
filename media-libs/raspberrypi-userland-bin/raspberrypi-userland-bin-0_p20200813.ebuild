@@ -12,7 +12,7 @@ SLOT="0"
 RESTRICT="strip"
 
 MY_PN="${PN%%-bin}"
-MY_PV="2+git20200520~143707+2fe4ca3-2"  # version is fully hardcoded, there's no version 2 in git
+MY_PV="2+git20200813~095940+f73fca0-1"  # version is fully hardcoded, there's no version 2 in git
 
 SRC_URI="
 	http://archive.raspberrypi.org/debian/pool/main/${MY_PN:0:1}/${MY_PN}/libraspberrypi0_${MY_PV}_arm64.deb
