@@ -12,7 +12,7 @@ SLOT="0"
 RDEPEND="!sys-kernel/linux-firmware[-savedconfig]"
 
 LF_SHA=887d2a1
-MY_P="firmware-brcm80211_20190114-1+rpt7"
+MY_P="firmware-brcm80211_20190114-1+rpt8"
 SRC_URI="
 	http://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/${MY_P}_all.deb
 	https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/brcm/brcmfmac43430-sdio.raspberrypi,3-model-b.txt?id=${LF_SHA}
